@@ -1,0 +1,86 @@
+<!-- index.html - Modified -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Multilingual Question Generator</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <span class="logo-gradient">∑QG</span>
+      <h1>Multilingual Question Generator</h1>
+    </div>
+    <div class="header-actions">
+      <button id="themeToggle" class="ghost" title="Toggle dark mode">🌙</button>
+      <a class="ghost" href="https://huggingface.co" target="_blank" rel="noopener" title="Models Source">HF</a>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="panel input-panel">
+      <h2>Input Passage</h2>
+      <p class="hint">Paste a textbook-like passage. We'll auto-detect language if you leave the hint blank.</p>
+      <textarea id="inputText" placeholder="Paste content here..."></textarea>
+      <div class="controls-grid">
+        <div class="control-group">
+          <label class="group-label">Question Types</label>
+          <label><input type="checkbox" id="mcq" checked> MCQ</label>
+          <label><input type="checkbox" id="cloze" checked> Cloze</label>
+          <label><input type="checkbox" id="short" checked> Short</label>
+        </div>
+        <div class="control-group">
+            <label>Per-Type Count
+              <input type="number" id="count" value="5" min="1" max="25">
+            </label>
+            <label>Language Hint
+              <input type="text" id="lang" placeholder="en / hi / es / ...">
+            </label>
+            <label>Output Format
+              <select id="outputFormat">
+                <option value="text" selected>Readable Text</option>
+                <option value="json">Raw JSON</option>
+              </select>
+            </label>
+        </div>
+        <div class="control-group actions">
+            <button id="generate" class="primary full-width">Generate</button>
+            <button id="clearInput" class="ghost full-width">Clear</button>
+        </div>
+      </div>
+      <div class="meta-row">
+        <span id="langDetected" class="pill muted">Language: —</span>
+        <span id="status" class="status idle">Idle</span>
+      </div>
+    </section>
+
+    <section class="panel output-panel">
+      <div class="output-header">
+        <h2>Results</h2>
+        <div class="output-actions">
+          <button id="copyOutput" class="ghost" title="Copy output">Copy</button>
+          <button id="downloadOutput" class="ghost" title="Download output">Download</button>
+        </div>
+      </div>
+      <div class="output-body">
+        <div id="spinner" class="spinner hidden">
+          <div class="ring"></div>
+          <p>Generating...</p>
+        </div>
+        <pre id="output" class="code-block">Output will appear here...</pre>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built with FastAPI & Transformers • <span id="year"></span></p>
+  </footer>
+
+  <script src="/static/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+jinja2
+langdetect
+transformers
+torch
+numpy
+python-dotenv
+tiktoken
+protobuf
+blobfile
+sentencepiece
